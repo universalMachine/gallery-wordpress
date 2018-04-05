@@ -19,7 +19,7 @@ $infinite_photography_blog_archive_image_size = $infinite_photography_customizer
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
-	<!--post thumbnal options-->
+    <!--post thumbnal options-->
 
     <?php
     if( has_post_thumbnail() ):?>

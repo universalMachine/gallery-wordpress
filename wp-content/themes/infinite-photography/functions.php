@@ -22,6 +22,43 @@ function the_post_content_thumbnail( $size = 'post-thumbnail', $attr = '' ) {
 	echo wp_get_content_image( null, $size, $attr );
 
 }
+
+function wp_get_content_image_src( $attachment_id, $size = 'thumbnail', $icon = false ) {
+	$content = get_post_field('post_content');
+	// get a thumbnail or intermediate image if there is one
+	$image = image_downsize( $attachment_id, $size );
+	if ( ! $image ) {
+		$src = false;
+
+		if ( $icon && $src = wp_mime_type_icon( $attachment_id ) ) {
+			/** This filter is documented in wp-includes/post.php */
+			$icon_dir = apply_filters( 'icon_dir', ABSPATH . WPINC . '/images/media' );
+
+			$src_file = $content;
+			@list( $width, $height ) = getimagesize( $src_file );
+		}
+
+		if ( $src && $width && $height ) {
+			$image = array( $content, $width, $height );
+		}
+	}
+	/**
+	 * Filters the image src result.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array|false  $image         Either array with src, width & height, icon src, or false.
+	 * @param int          $attachment_id Image attachment ID.
+	 * @param string|array $size          Size of image. Image size or array of width and height values
+	 *                                    (in that order). Default 'thumbnail'.
+	 * @param bool         $icon          Whether the image should be treated as an icon. Default false.
+	 */
+	//return apply_filters( 'wp_get_attachment_image_src', $image, $attachment_id, $size, $icon );
+
+	return array($content);
+	//return $image;
+}
+
 function wp_get_content_image($attachment_id, $size = 'thumbnail', $icon = false, $attr = '') {
 	$html="";
 	$src_file = get_post_field('post_content');
@@ -82,4 +119,20 @@ function wp_get_content_image($attachment_id, $size = 'thumbnail', $icon = false
 	}
 
 	return $html;
+}
+
+function isComposition($text){
+	return stripos($text,"composition:") === 0;
+}
+function resolve_thumb($content){
+	if(isComposition($content)){
+
+	}else{
+		return $content;
+	}
+
+}
+
+function resolve_composition($compose){
+
 }
