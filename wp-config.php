@@ -26,7 +26,7 @@ define('DB_NAME', 'imageDb');
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'my-secret-pw');
+define('DB_PASSWORD', 'QQAAZZ1wwssxx#');
 
 /** MySQL hostname */
 define('DB_HOST', '127.0.0.1:3306');

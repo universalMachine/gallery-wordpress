@@ -19,7 +19,17 @@
  */
 do_action( 'infinite_photography_action_before_head' );?>
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108966078-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
 
+		  gtag('config', 'UA-108966078-1');
+		</script>
+
+			
 		<?php
 		/**
 		 * infinite_photography_action_before_wp_head hook
