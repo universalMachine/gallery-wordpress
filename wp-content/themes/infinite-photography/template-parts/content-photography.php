@@ -36,7 +36,7 @@ $infinite_photography_blog_archive_click_image_size = $infinite_photography_cust
 			  <div class="inner-content-middle">
 				  <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 				  <div class='at-icon-link'>
-					  <a class="image-link" alt="beauty asian girl woman" href="<?php echo esc_url( $image_url[0] );?>"><i class="fa fa-eye"></i></a>
+					  <a class="image-link" alt="beauty asian girl woman" href="<?php echo esc_url( $image_url_full[0] );?>"><i class="fa fa-eye"></i></a>
 					  <a href="<?php the_permalink();?>"><i class="fa fa-external-link"></i></a>
 				  </div>
 			  </div>
