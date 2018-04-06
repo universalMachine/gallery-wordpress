@@ -59,11 +59,21 @@ function wp_get_content_image_src( $attachment_id, $size = 'thumbnail', $icon = 
 	//return $image;
 }
 
+function wp_get_content_thumb_src( $attachment_id, $size = 'thumbnail', $icon = false ) {
+	$content = get_post_field('post_content');
+	return array(ResolveObj::resolve_thumb($content));
+}
+
+function wp_get_content_full_src( $attachment_id, $size = 'thumbnail', $icon = false ) {
+	$content = get_post_field('post_content');
+	return array(ResolveObj::resolve_full($content));
+}
+
 function wp_get_content_image($attachment_id, $size = 'thumbnail', $icon = false, $attr = '') {
 	$html="";
 	$src_file = get_post_field('post_content');
 	 @list( $width, $height ) = getimagesize( $src_file );
-	 $image=array($src_file,$width,$height);
+	 $image=array(ResolveObj::resolve_full($src_file),$width,$height);
 	if ( $image ) {
 		list($src, $width, $height) = $image;
 		$hwstring = image_hwstring($width, $height);
@@ -121,18 +131,106 @@ function wp_get_content_image($attachment_id, $size = 'thumbnail', $icon = false
 	return $html;
 }
 
-function isComposition($text){
-	return stripos($text,"composition:") === 0;
-}
-function resolve_thumb($content){
-	if(isComposition($content)){
 
-	}else{
-		return $content;
+
+class ResolveObj{
+	static private $compositionStr = "composition:";
+	static function resolve_full($content){
+		return self::resolve_composition_key($content,"full");
 	}
 
+	static function resolve_thumb($content){
+		return self::resolve_composition_key($content,"thumb");
+	}
+	static function resolve_composition_key($content,$key){
+		if(self::isComposition($content)){
+			return self::resolve_key(self::getCompositionBody($content),$key);
+		}else{
+			return $content;
+		}
+	}
+	static function resolve_key($content,$key){
+
+			$result = self::decode_object($content);
+			if(array_key_exists($key,$result)){
+				return $result[$key];
+			}else{
+				throw new InvalidArgumentException("must has $key key");
+			}
+	}
+
+	static function decode_composition($obj){
+
+		if(self::isComposition($obj)){
+			return self::decode_object(self::getCompositionBody($obj));
+		}else{
+			throw new InvalidArgumentException("decode_composition argument must be compostion");
+		}
+
+
+	}
+
+	static function isComposition($text){
+		return stripos($text,ResolveObj::$compositionStr) === 0;
+	}
+
+
+	static function decode_object($obj){
+		$result = array();
+		try{
+			while($obj!="") {
+				$result[ ResolveObj::getKey( $obj ) ] = self::getValue( $obj );
+				$delimit_pos              = strpos( $obj, ":" );
+				$end                      = stripos( $obj, ";", $delimit_pos );
+				if ( $end === false ) {
+					$obj = "";
+				} else {
+					$obj = self::removeLen( $obj, $end + 1 );
+				}
+			}
+		}catch (InvalidArgumentException $e){
+			print($e);
+		}finally{
+			return $result;
+		}
+
+
+
+	}
+	static function getCompositionBody($obj){
+		return self::removeLen($obj,strlen(self::$compositionStr));
+	}
+
+	static function removeLen($item,$rmLen){
+		if($rmLen>strlen($item))
+			return "";
+		else
+			return substr($item,$rmLen);
+	}
+
+	static function getKey($item){
+		if(($delimit_pos = strpos($item,":"))!==false){
+			return substr($item,0,$delimit_pos);
+		}else{
+			throw  new InvalidArgumentException("format error");
+		};
+	}
+
+	static function getValue($item){
+		if(($delimit_pos = strpos($item,":"))!==false) {
+			$end = stripos($item,";",$delimit_pos);
+			if($end===false){
+				return substr($item,$delimit_pos+1);
+			}else{
+				return substr($item,$delimit_pos+1,($end-1)-$delimit_pos);
+			}
+		}else {
+			throw  new InvalidArgumentException("format error");
+		}
+	}
 }
 
-function resolve_composition($compose){
 
-}
+
+
+
