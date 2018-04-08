@@ -356,12 +356,19 @@ class AMP_Post_Template {
 		);
 	}
 
+	function my_resolve_content_full($post){
+		$content = $post->post_content;
+
+		return '<img src="'.ResolveObj::resolve_full($content).'" alt="beauty asian girl hot asian girl cute aisan girl"/>';
+	}
+
+
 	/**
 	 * Build post content.
 	 */
 	private function build_post_content() {
 		$amp_content = new AMP_Content(
-			$this->post->post_content,
+			$this->my_resolve_content_full($this->post),
 			apply_filters(
 				'amp_content_embed_handlers', array(
 					'AMP_Twitter_Embed_Handler'     => array(),
