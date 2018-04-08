@@ -30,7 +30,7 @@ $infinite_photography_blog_archive_click_image_size = $infinite_photography_cust
 		$image_url_full[0] = get_template_directory_uri().'/assets/img/no-image-840-480.jpg';
 	endif;
 	?>
-  <div class="masonry-item post-item" style="background-image: url('<?php echo esc_url( $image_url[0] );?>')">
+  <div class="masonry-item post-item" style="background-image: url('<?php echo esc_url( $image_url_full[0] );?>')">
 	  <div class="post-content">
 		  <div class="inner-content">
 			  <div class="inner-content-middle">
