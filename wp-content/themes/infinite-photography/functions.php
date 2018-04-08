@@ -15,13 +15,14 @@ require_once trailingslashit( get_template_directory() ).'acmethemes/init.php';
 
 function has_post_content(){
 	$content = get_post_field('post_content');
-	return  '' !== $content;
+	return  false !== (bool)$content;
 }
 
 function the_post_content_thumbnail( $size = 'post-thumbnail', $attr = '' ) {
 	echo wp_get_content_image( null, $size, $attr );
 
 }
+
 
 function wp_get_content_image_src( $attachment_id, $size = 'thumbnail', $icon = false ) {
 	$content = get_post_field('post_content');

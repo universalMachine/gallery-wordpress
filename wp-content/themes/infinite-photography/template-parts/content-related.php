@@ -19,14 +19,14 @@
 		$image_url[0] = get_template_directory_uri().'/assets/img/no-image-840-480.jpg';
 		$image_url_full[0] = get_template_directory_uri().'/assets/img/no-image-840-480.jpg';
 	endif;*/
-	if( (bool)(wp_get_content_image_src()[0]) ):
+	if(has_post_content()):
 		//if(has_post_thumbnail()):
 		//$image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_image_size );
-		$image_url_full = wp_get_attachment_image_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_click_image_size );
+		//$image_url_full = wp_get_attachment_image_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_click_image_size );
 
-		$image_url = wp_get_content_image_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_image_size );
+		$image_url = wp_get_content_thumb_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_image_size );
 
-		$image_url_full = wp_get_content_image_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_click_image_size );
+		$image_url_full = wp_get_content_full_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_click_image_size );
 
 	else:
 		$image_url[0] = get_template_directory_uri().'/assets/img/no-image-840-480.jpg';

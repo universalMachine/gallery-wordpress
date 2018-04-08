@@ -14,7 +14,7 @@ $infinite_photography_blog_archive_click_image_size = $infinite_photography_cust
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'acme-col-3 masonry-post' ); ?>>
 	<?php
-	if( (bool)(wp_get_content_image_src()[0]) ):
+	if( has_post_content() ):
 	//if(has_post_thumbnail()):
 		//$image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_image_size );
 		//$image_url_full = wp_get_attachment_image_src( get_post_thumbnail_id(), $infinite_photography_blog_archive_click_image_size );
