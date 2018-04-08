@@ -29,7 +29,7 @@ do_action( 'infinite_photography_action_before_head' );?>
 		  gtag('config', 'UA-108966078-1');
 		</script>
 
-			
+        <meta name=”description” content=”welcome friends,there are many cute beauty and hot asian girls here,so many beautiful photo,so many girls womans,so cute and hot”>
 		<?php
 		/**
 		 * infinite_photography_action_before_wp_head hook
@@ -41,6 +41,7 @@ do_action( 'infinite_photography_action_before_head' );?>
 
 		wp_head();
 		?>
+
 	</head>
 <body <?php body_class();?>>
 
