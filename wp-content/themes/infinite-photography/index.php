@@ -58,7 +58,8 @@ global $infinite_photography_customizer_all_values;
 			do_action( 'infinite_photography_action_masonry_end' );
 			echo "<div class='clearfix'></div>";
 
-			the_posts_navigation();
+			the_posts_navigation(array('prev_text'          => __( 'Older photos' ),
+			                           'next_text'          => __( 'Newer photos' ),));
 			else :
                 get_template_part( 'template-parts/content', 'none' );
 			endif;

@@ -767,7 +767,7 @@ class The_Neverending_Home_Page {
 		global $currentday;
 
 		// Default click handle text
-		$click_handle_text = __( 'Older posts', 'jetpack' );
+		$click_handle_text = __( 'ResolveObj::$1s', 'jetpack' );
 
 		// If a single CPT is displayed, use its plural name instead of "posts"
 		// Could be empty (posts) or an array of multiple post types.
