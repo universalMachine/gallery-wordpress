@@ -30,7 +30,10 @@ do_action( 'infinite_photography_action_before_head' );?>
 		</script>
 
         <meta name=”description” content="welcome friends,there are many cute beauty and hot asian girls here,so many beautiful photo,so many girls womans,so cute and hot">
-		<?php
+        <link rel="icon" type="image/png" href="favicon/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="faicon/favicon-16x16.png" sizes="16x16" />
+
+        <?php
 		/**
 		 * infinite_photography_action_before_wp_head hook
 		 * @since Infinite Photography 1.0.0
