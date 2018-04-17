@@ -19,17 +19,17 @@
  */
 do_action( 'infinite_photography_action_before_head' );?>
 	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108966078-1"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108966078-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-		  gtag('config', 'UA-108966078-1');
-		</script>
+            gtag('config', 'UA-108966078-2');
+        </script>
 
-        <meta name=”description” content="welcome friends,there are many cute beauty and hot asian girls here,so many beautiful photo,so many girls womans,so cute and hot">
+        <meta name=”description” content="welcome friends,there are many lovely pet pics & photos,they are so cute and lovely. most lovely rabbit pics,many cute rabbit pics">
         <link rel="icon" type="image/png" href="favicon/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="favicon/favicon-16x16.png" sizes="16x16" />
 
