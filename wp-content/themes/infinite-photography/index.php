@@ -1,7 +1,7 @@
 <?php
 /**
- * The main template file.
- *
+     * The main template file.
+     *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
@@ -12,7 +12,7 @@
  * @package Acme Themes
  * @subpackage Infinite Photography
  */
-
+require_once "data/BestPosts.php";
 get_header();
 global $infinite_photography_customizer_all_values;
 ?>
@@ -35,8 +35,30 @@ global $infinite_photography_customizer_all_values;
 			 */
 			do_action( 'infinite_photography_action_masonry_start' );
 
+            $BestPosts = new BestPosts();
 
 
+        if ($BestPosts->isHome()):
+			while ( $BestPosts->have_posts() ) : $BestPosts->the_post();
+
+					/*
+					 * Include the Post-Format-specific template for the content.
+					 * If you want to override this in a child theme, then include a file
+					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+					 */
+					if ( $infinite_photography_customizer_all_values['infinite-photography-blog-archive-layout'] == 'photography') {
+						get_template_part( 'template-parts/content', 'photography' );
+					}
+					else{
+						get_template_part( 'template-parts/content', get_post_format() );
+					}
+
+				endwhile;
+					?>
+            <header class="page-header">
+                <h1 class="page-title"><?php esc_html_e( 'Newest pictures', 'infinite-photography' ); ?></h1>
+            </header>
+        <?php endif;
 			while ( have_posts() ) : the_post();
 					/*
 					 * Include the Post-Format-specific template for the content.
@@ -60,8 +82,8 @@ global $infinite_photography_customizer_all_values;
 			do_action( 'infinite_photography_action_masonry_end' );
 			echo "<div class='clearfix'></div>";
 
-			the_posts_navigation(array('prev_text'          => __( 'Older photos' ),
-			                           'next_text'          => __( 'Newer photos' ),));
+			the_posts_navigation(array('prev_text'          => __( 'Older pictures' ),
+			                           'next_text'          => __( 'Newer pictures' ),));
 			else :
                 get_template_part( 'template-parts/content', 'none' );
 			endif;
