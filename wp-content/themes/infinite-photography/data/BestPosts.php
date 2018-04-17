@@ -27,7 +27,7 @@ class BestPosts {
 		if($this->isDev()){
 			$this->postIds= array(387,348,340);
 		}else{
-			$this->postIds= array(350,338,357);
+			$this->postIds= array();
 		}
 		$this->initPosts();
 		$this->postCount=sizeof($this->postIds);
